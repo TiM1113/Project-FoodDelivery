@@ -11,14 +11,9 @@ import fs from 'fs';
 
 // add food item (this is a controller)
 const addFood = async (req, res) => {
-
-// Log the request file and body for debugging
-console.log(req.file); // To see if the file is received
-console.log(req.body); // To check if the other form data is received
-
-
-
-
+	// Log the request file and body for debugging
+	console.log(req.file); // To see if the file is received
+	console.log(req.body); // To check if the other form data is received
 
 	// Get both filename and path
 
@@ -40,4 +35,20 @@ console.log(req.body); // To check if the other form data is received
 	}
 };
 
-export {addFood};
+// All food list
+// Food list API endpoint
+const listFood = async (req, res) => {
+	try {
+		// Using foodModel model to fitch all the food items
+		const foods = await foodModel.find({});
+		// Create one response using the Json object
+		res.json({success: true, data: foods});
+	} catch (error) {
+		console.log(error);
+		res.json({success: false, message: 'Error'});
+	}
+};
+
+// Pass the addFood function into export
+// Pass the above listFood function into export
+export {addFood, listFood};
