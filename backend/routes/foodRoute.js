@@ -1,6 +1,6 @@
 import express from 'express';
-// import the addFood function from foodController.js/ import listFood function as well
-import {addFood, listFood} from '../controllers/foodController.js';
+// import the controller functions from foodController.js to be route handler in foodRoute.js
+import {addFood, listFood, removeFood} from '../controllers/foodController.js';
 // Multer is a Node.js middleware used for handling multipart/form-data, which is primarily used for uploading files. It is often used in Express applications to allow users to upload files, such as images, videos, or other types of documents.
 import multer from 'multer';
 
@@ -19,9 +19,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
+// create endpoints for the according route handlers.
 foodRouter.post('/add', upload.single('image'), addFood);
-// create listFood endpoint here 
 foodRouter.get('/list', listFood)
+foodRouter.post('/remove', removeFood)
 
 
 // set this router in server.js file

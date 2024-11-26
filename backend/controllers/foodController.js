@@ -9,6 +9,8 @@ import foodModel from '../models/foodModel.js';
 // Creating directories, etc.
 import fs from 'fs';
 
+
+// All business logic should be presented in controller functions.
 // add food item (this is a controller)
 const addFood = async (req, res) => {
 	// Log the request file and body for debugging
@@ -49,6 +51,23 @@ const listFood = async (req, res) => {
 	}
 };
 
+//Remove food items
+const removeFood = async (req, res) => {
+  try {
+    // read id from the post request 
+    const food = await foodModel.findById(req.body.id)
+    // delete the according id files(images) in uploads folder
+    fs.unlink('uploads/${food.image}', ()=>{})
+
+    await foodModel.findByIdAndDelete(req.body.id);
+    res.json({success:true, message:"Food Removed"})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false, message:"Error"})
+  }
+}
+
+
 // Pass the addFood function into export
 // Pass the above listFood function into export
-export {addFood, listFood};
+export {addFood, listFood, removeFood};
