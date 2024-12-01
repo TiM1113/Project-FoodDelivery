@@ -6,23 +6,27 @@ import { Routes, Route } from 'react-router-dom'
 import Add from './pages/Add/Add';
 import List from './pages/List/List';
 import Orders from './pages/Orders/Orders';
+// import toasty notification 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
   return (
     <div>
-      <Navbar/> {/* Mount Navbar component into APP.jsx */}
+      <ToastContainer /> {/* Mount ToastContainer component into APP.jsx */}
+      <Navbar /> {/* Mount Navbar component into APP.jsx */}
       <hr />
       <div className="app-content">
-      <Sidebar/> {/* Mount Sidebar component into APP.jsx */}  
+        <Sidebar /> {/* Mount Sidebar component into APP.jsx */}
 
-      {/* Import Routes into App.jsx automatically by Routes tag pair */}
-      <Routes>
-        {/* Set up routes within Routes and Mounted the component-Add/List/Orders */}
-        <Route path="/add" element={<Add/>}/>
-        <Route path="/list" element={<List/>}/>
-        <Route path="/orders" element={<Orders/>}/>
-      </Routes>
+        {/* Import Routes into App.jsx automatically by Routes tag pair */}
+        <Routes>
+          {/* Set up routes within Routes and Mounted the component-Add/List/Orders */}
+          <Route path="/add" element={<Add />} />
+          <Route path="/list" element={<List />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
       </div>
     </div>
   )
