@@ -38,3 +38,8 @@ hr{
   flex-direction: column;
   gap: 10px;
 }
+
+/* cursor style in List.jsx */
+.cursor{
+  cursor: pointer;
+}
