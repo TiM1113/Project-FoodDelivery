@@ -5,6 +5,10 @@ import cors from 'cors';
 // DB connection has been imported from config file
 import {connectDB} from './config/db.js';
 import foodRouter from './routes/foodRoute.js';
+import userRouter from './routes/userRoute.js'; // this will be automatically imported when I add the app.use("/api/user", userRouter)  API endpoints
+
+// import .env file to this project
+import 'dotenv/config'
 
 // app config
 const app = express();
@@ -19,7 +23,8 @@ connectDB();
 
 // API endpoints
 app.use('/api/food', foodRouter);
-app.use("/images", express.static('uploads'))
+app.use('/images', express.static('uploads'));
+app.use('/api/user', userRouter);
 
 // use get() to request the data from the server
 app.get('/', (req, res) => {

@@ -3,9 +3,10 @@ import './List.css'
 import axios from 'axios'
 import {toast} from "react-toastify"
 
-const List = () => {
+// add url in List const to destructure it
+const List = ({url}) => {
 
-  const url = "http://localhost:4000"
+  // const url = "http://localhost:4000"// this url const here should be removed
   // Create one state variable to store all the data form database.
   const [list, setList] = useState([]);
   // Create one fetch list function

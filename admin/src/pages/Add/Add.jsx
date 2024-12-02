@@ -8,9 +8,10 @@ import axios from "axios"
 // 
 import { toast } from 'react-toastify';
 
-const Add = () => {
+// add url in Add const to destructure it
+const Add = ({ url }) => {
 
-  const url = "http://localhost:4000";
+  // const url = "http://localhost:4000"; // this url const here should be removed
   // create state variable(before using 'useState()' should import it in advance)
   const [image, setImage] = useState(false);
   const [data, setDate] = useState({
@@ -57,7 +58,7 @@ const Add = () => {
         }
       )
       setImage(false);
-      
+
       toast.success(response.data.message)// we will get successful message when we upload image successfully
     }
     else {
@@ -66,23 +67,23 @@ const Add = () => {
   }
 
 
-    // create the on change Handler function, use this function to update category name
-    const onChangeHandler = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setDate(data => ({ ...data, [name]: value }))
-    }
+  // create the on change Handler function, use this function to update category name
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setDate(data => ({ ...data, [name]: value }))
+  }
 
   return (
     <div className='add'>
       <form className="flex-col" onSubmit={onSubmitHandler}>
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>
-          <input onChange={(e) => { setImage(e.target.files[0]); e.target.value = ''}} type="file" accept="image/*" id="image" hidden />
+          <input onChange={(e) => { setImage(e.target.files[0]); e.target.value = '' }} type="file" accept="image/*" id="image" hidden />
           <label htmlFor="image">
             <img src={!image ? assets.upload_area : URL.createObjectURL(image)} alt="" />
           </label>
-          
+
         </div>
         <div className="add-product-name flex-col">
           <p>Product name</p>

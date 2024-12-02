@@ -12,6 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
+
+  // Only place const url in App.jsx file instead of placing this variable within different files
+  const url = "http://localhost:4000"
+
   return (
     <div>
       <ToastContainer /> {/* Mount ToastContainer component into APP.jsx */}
@@ -22,10 +26,10 @@ const App = () => {
 
         {/* Import Routes into App.jsx automatically by Routes tag pair */}
         <Routes>
-          {/* Set up routes within Routes and Mounted the component-Add/List/Orders */}
-          <Route path="/add" element={<Add />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/orders" element={<Orders />} />
+          {/* Set up routes within Routes and Mounted the component-Add/List/Orders  adding url as property in add list and orders pages*/}
+          <Route path="/add" element={<Add url={url}/>} />
+          <Route path="/list" element={<List url={url}/>} />
+          <Route path="/orders" element={<Orders url={url}/>} />
         </Routes>
       </div>
     </div>
