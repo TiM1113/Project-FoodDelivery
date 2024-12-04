@@ -1,5 +1,7 @@
+import axios from 'axios';
 import {createContext, useEffect, useState} from 'react';
-import {food_list} from '../assets/assets';
+// import {food_list} from '../assets/assets'; we don't need to import food_list form assets folder anymore.
+
 
 export const StoreContext = createContext(null);
 
@@ -8,8 +10,17 @@ const StoreContextProvider = (props) => {
 
   // this url variable will be passed in the context value
   const url = "http://localhost:4000"
-  // to create one state variable
+  // to create one token state variable default it as empty ""
   const [token, setToken] = useState("")
+
+  // create one arrow function to fetch food list from the database
+  const fetchFoodList = async () => {
+    const response = await axios.get(url + "/api/food/list");
+    setFoodList(response.data.data);
+  }
+
+  // to create one state variable to save food like to database instead of loading assets from local assets folder.
+  const [food_list, setFoodList] = useState([])// then we don't need to import food_list form assets folder anymore.
 
 	const addToCart = (itemId) => {
 		if (!cartItems[itemId]) {
@@ -33,6 +44,13 @@ const StoreContextProvider = (props) => {
 		}
     return totalAmount;
 	};
+
+  // use useEffect function to save token state within local storage 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"))
+    }
+  }, [])
 
 	const contextValue = {
 		food_list,
