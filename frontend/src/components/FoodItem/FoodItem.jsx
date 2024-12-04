@@ -5,13 +5,13 @@ import {StoreContext} from '../../context/StoreContext';
 
 const FoodItem = ({id, name, price, description, image}) => {
 	
-	const {cartItems, addToCart, removeFromCart} = useContext(StoreContext);
+	const {cartItems, addToCart, removeFromCart, url} = useContext(StoreContext);// url used for fetching images from backend database
 
 	return (
 		<div className="food-item">
 			<div className="food-item-img-container">
 				<img
-					src={image}
+					src={url + "/images/" + image}// confirm the images come from backend database
 					alt=""
 					className="food-item-image"
 				/>

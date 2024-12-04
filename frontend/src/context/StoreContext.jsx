@@ -47,9 +47,14 @@ const StoreContextProvider = (props) => {
 
   // use useEffect function to save token state within local storage 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"))
+    
+    async function loadData(){
+      await fetchFoodList();
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
     }
+    loadData();
   }, [])
 
 	const contextValue = {
