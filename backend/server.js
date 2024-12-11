@@ -9,6 +9,7 @@ import userRouter from './routes/userRoute.js'; // this will be automatically im
 
 // import .env file to this project
 import 'dotenv/config'
+import cartRouter from './routes/cartRoute.js';
 
 // app config
 const app = express();
@@ -21,10 +22,12 @@ app.use(cors());
 // DB connection
 connectDB();
 
-// API endpoints
+// API endpoints / 3 cart routers from cartRoute.js will be initialized here 
 app.use('/api/food', foodRouter);
 app.use('/images', express.static('uploads'));
 app.use('/api/user', userRouter);
+// the first initialized router is carToCart router(end point)
+app.use("/api/cart", cartRouter) // -> to decode token we will use the middleware
 
 // use get() to request the data from the server
 app.get('/', (req, res) => {
