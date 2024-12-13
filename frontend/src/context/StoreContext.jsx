@@ -22,7 +22,7 @@ const StoreContextProvider = (props) => {
   // to create one state variable to save food like to database instead of loading assets from local assets folder.
   const [food_list, setFoodList] = useState([])// then we don't need to import food_list form assets folder anymore.
 
-  // this is the frontend addToCart function, align with backend addToCart function to process cart logic
+  // 1- addToCart : this is the frontend addToCart function, align with backend addToCart function to process cart logic
 	const addToCart = async (itemId) => {
 		if (!cartItems[itemId]) {
 			setCartItems((prev) => ({...prev, [itemId]: 1}));
@@ -30,13 +30,19 @@ const StoreContextProvider = (props) => {
 			setCartItems((prev) => ({...prev, [itemId]: prev[itemId] + 1}));
 		}
     // add another if else statement to check a token weather available, then update to backend database. after this, addToCart function will be convert to async function
+    // await keyword can only exist within async function
     if (token) {
       await axios.post(url + "/api/cart/add", {itemId}, {headers:{token}})
     }
 	};
 
-	const removeFromCart = (itemId) => {
+  // 2- removeFromCart
+	const removeFromCart = async (itemId) => {
 		setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}));
+    // add await keyword to integrate async function
+    if (token) {
+      await axios.post(url + "/api/cart/remove", {itemId}, {headers:{token}})
+    }
 	};
 
 	const getTotalCartAmount = () => {
