@@ -10,6 +10,8 @@ import userRouter from './routes/userRoute.js'; // this will be automatically im
 // import .env file to this project
 import 'dotenv/config'
 import cartRouter from './routes/cartRoute.js';
+// import orderModel from './models/orderModel.js';
+import orderRouter from './routes/orderRoute.js';
 
 // app config
 const app = express();
@@ -28,6 +30,7 @@ app.use('/images', express.static('uploads'));
 app.use('/api/user', userRouter);
 // the first initialized router is carToCart router(end point)
 app.use("/api/cart", cartRouter) // -> to decode token we will use the middleware
+app.use("/api/order", orderRouter)
 
 // use get() to request the data from the server
 app.get('/', (req, res) => {
