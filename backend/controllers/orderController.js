@@ -1,4 +1,5 @@
 // import orderModel from models folder
+
 // import { verify } from 'jsonwebtoken';
 import orderModel from '../models/orderModel.js';
 import userModel from "../models/userModel.js";
@@ -9,7 +10,7 @@ import Stripe from 'stripe'; // in importing package we use capital Strip
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 // create a variable to store the frontend url
-  const frontend_url = "http://localhost:5173/"
+  const frontend_url = "http://localhost:5173" // *****should be really care of extra slash "/" was added at the end of url which will lead a "No routes matched location '/verify?success=true&orderId=..." error on the Verify component page.*****
 
 // placing user order form frontend
 const placeOrder = async (req, res) => {
@@ -65,5 +66,25 @@ const placeOrder = async (req, res) => {
   }
 }
 
+
+
+// create one temporary payment verification system to verify the order(this is not the perfect way, the perfect way is to use B hooks)
+const verifyOrder = async (req, res) => {
+  const {orderId, success} = req.body;
+  try {
+    if (success=="true") {
+      await orderModel.findByIdAndUpdate(orderId, {payment:true});
+      res.json({success:true, message:"Paid"})
+    }
+    else{
+      await orderModel.findByIdAndDelete(orderId);
+      res.json({success:false, message:"Not Paid"})
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({success:false, message:"Error"})
+  }
+}
+
 // export placeOrder function and it will be imported in orderRoute.js 
-export {placeOrder}
+export {placeOrder, verifyOrder}
