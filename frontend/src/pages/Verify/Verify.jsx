@@ -27,7 +27,7 @@ const Verify = () => {
     verifyPayment();
   }, [])
 
-  // console.log(success, orderId);
+
 
 
   return (
