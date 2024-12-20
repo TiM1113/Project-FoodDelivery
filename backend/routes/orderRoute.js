@@ -1,7 +1,7 @@
 import express from "express" // this express used for creating a router
 import authMiddleware from "../middleware/auth.js"
 // import placeOrder from orderController.js
-import { placeOrder, verifyOrder } from "../controllers/orderController.js"
+import { placeOrder, userOrders, verifyOrder } from "../controllers/orderController.js"
 
 
 // import { verify } from "jsonwebtoken";
@@ -14,6 +14,9 @@ const orderRouter = express.Router();
 orderRouter.post("/place", authMiddleware, placeOrder);
 // 2- place order verification end point
 orderRouter.post("/verify", verifyOrder)
+
+// 
+orderRouter.post("/userorders",authMiddleware,userOrders);
 
 // export the place order router, and it will be used in service.js file
 export default orderRouter;

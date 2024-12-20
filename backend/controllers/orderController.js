@@ -12,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // create a variable to store the frontend url
   const frontend_url = "http://localhost:5173" // *****should be really care of extra slash "/" was added at the end of url which will lead a "No routes matched location '/verify?success=true&orderId=..." error on the Verify component page.*****
 
-// placing user order form frontend
+// 1 - placing user order form frontend
 const placeOrder = async (req, res) => {
 
   // create new order logic
@@ -68,7 +68,22 @@ const placeOrder = async (req, res) => {
 
 
 
-// create one temporary payment verification system to verify the order(this is not the perfect way, the perfect way is to use B hooks)
+//4- User Orders for Frontend
+const userOrders = async (req, res) => {
+  try {
+      const orders = await orderModel.find({ userId: req.body.userId });
+      res.json({ success: true, data: orders })
+  } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "Error" })
+  }
+}
+
+
+
+
+
+//6- create one temporary payment verification system to verify the order(this is not the perfect way, the perfect way is to use B hooks)
 const verifyOrder = async (req, res) => {
   const {orderId, success} = req.body;
   try {
@@ -87,4 +102,4 @@ const verifyOrder = async (req, res) => {
 }
 
 // export placeOrder function and it will be imported in orderRoute.js 
-export {placeOrder, verifyOrder}
+export {placeOrder, userOrders, verifyOrder}
