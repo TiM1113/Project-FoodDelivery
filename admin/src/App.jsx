@@ -27,7 +27,7 @@ const App = () => {
         {/* Import Routes into App.jsx automatically by Routes tag pair */}
         <Routes>
           {/* Set up routes within Routes and Mounted the component-Add/List/Orders  adding url as property in add list and orders pages*/}
-          <Route path="/add" element={<Add url={url}/>} />
+          <Route path="/add" element={<Add url={url}/>} /> 
           <Route path="/list" element={<List url={url}/>} />
           <Route path="/orders" element={<Orders url={url}/>} />
         </Routes>

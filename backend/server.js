@@ -15,6 +15,7 @@ import orderRouter from './routes/orderRoute.js';
 
 // app config
 const app = express();
+// Start the server
 const port = 4000;
 
 // initialize the middleware
@@ -24,13 +25,16 @@ app.use(cors());
 // DB connection
 connectDB();
 
-// API endpoints / 3 cart routers from cartRoute.js will be initialized here 
+// Mount the router API endpoints / 3 cart routers from cartRoute.js will be initialized here 
 app.use('/api/food', foodRouter);
 app.use('/images', express.static('uploads'));
 app.use('/api/user', userRouter);
 // the first initialized router is carToCart router(end point)
-app.use("/api/cart", cartRouter) // -> to decode token we will use the middleware
-app.use("/api/order", orderRouter)
+app.use('/api/cart', cartRouter) // -> to decode token we will use the middleware
+app.use('/api/order', orderRouter);
+// log code for debugging
+console.log('Server initialized');
+console.log('Order router mounted at /api/order');
 
 // use get() to request the data from the server
 app.get('/', (req, res) => {

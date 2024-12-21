@@ -67,36 +67,6 @@ const removeFood = async (req, res) => {
 	}
 };
 
-// New solution of Remove food items
-// import { unlink } from 'fs/promises';
-
-// const removeFood = async (req, res) => {
-//     try {
-//         // read id from the post request
-//         const food = await foodModel.findById(req.body.id);
-        
-//         // First check if food exists
-//         if (!food) {
-//             return res.json({ success: false, message: 'Food item not found' });
-//         }
-
-//         // delete the file from uploads folder
-//         try {
-//             await unlink(`uploads/${food.image}`);
-//         } catch (unlinkError) {
-//             console.log('Error deleting file:', unlinkError);
-//             // Continue execution even if file deletion fails
-//         }
-
-//         // delete from database
-//         await foodModel.findByIdAndDelete(req.body.id);
-//         res.json({ success: true, message: 'Food Removed' });
-        
-//     } catch (error) {
-//         console.log(error);
-//         res.json({ success: false, message: 'Error' });
-//     }
-// };
 
 export default removeFood;
 
