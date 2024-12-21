@@ -68,7 +68,7 @@ const placeOrder = async (req, res) => {
 
 
 
-//4- User Orders for Frontend
+//4- first build User Orders for Frontend in this file, 2)- go to routes folder to create the end point of userOrders 
 const userOrders = async (req, res) => {
   try {
       const orders = await orderModel.find({ userId: req.body.userId });

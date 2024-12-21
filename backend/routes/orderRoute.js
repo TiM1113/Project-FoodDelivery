@@ -15,8 +15,8 @@ orderRouter.post("/place", authMiddleware, placeOrder);
 // 2- place order verification end point
 orderRouter.post("/verify", verifyOrder)
 
-// 
-orderRouter.post("/userorders",authMiddleware,userOrders);
+// 3- create end point for userOrders 
+orderRouter.post("/userorders", authMiddleware, userOrders);
 
 // export the place order router, and it will be used in service.js file
 export default orderRouter;
