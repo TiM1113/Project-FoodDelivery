@@ -6,6 +6,7 @@ import {
 	userOrders,
 	verifyOrder,
 	listOrders,
+  updateStatus
 } from '../controllers/orderController.js';
 
 // Log that the order router is being initialized
@@ -30,6 +31,9 @@ orderRouter.get('/list', listOrders); //In Express, route paths must start with 
 // 	console.log('GET /list called');
 // 	next(); // Proceed to the actual `listOrders` handler
 // }, listOrders);
+
+// 5- update orders status in admin panel
+orderRouter.post('/status', updateStatus)
 
 // export the place order router, and it will be used in service.js file
 export default orderRouter;

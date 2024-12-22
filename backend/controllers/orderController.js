@@ -10,7 +10,7 @@ import Stripe from 'stripe'; // in importing package we use capital Strip
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // create a variable to store the frontend url
-const frontend_url = 'http://localhost:5173'; // *****should be really care of extra slash "/" was added at the end of url which will lead a "No routes matched location '/verify?success=true&orderId=..." error on the Verify component page.*****
+const frontend_url = 'http://localhost:5174'; // *****should be really care of extra slash "/" was added at the end of url which will lead a "No routes matched location '/verify?success=true&orderId=..." error on the Verify component page.*****
 
 // 1 - placing user order form frontend
 const placeOrder = async (req, res) => {
@@ -92,7 +92,7 @@ const verifyOrder = async (req, res) => {
 	}
 };
 
-// API: Listing orders for admin panel - fetch all the orders of all the users
+//2- API: Listing orders for admin panel - fetch all the orders of all the users
 const listOrders = async (req, res) => {
 	try {
 		const orders = await orderModel.find({});
@@ -103,5 +103,19 @@ const listOrders = async (req, res) => {
 	}
 };
 
+// create an API for updating orders status in the admin panel 
+const updateStatus = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(
+      req.body.orderId, 
+      {status:req.body.status}),
+      { new: true } // Ensure the updated document is returned
+    res.json({success:true, message:"Status Updated"})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false, message:"Error"})
+  }
+}
+
 // export placeOrder function and it will be imported in orderRoute.js
-export {placeOrder, userOrders, verifyOrder, listOrders};
+export {placeOrder, userOrders, verifyOrder, listOrders, updateStatus};
