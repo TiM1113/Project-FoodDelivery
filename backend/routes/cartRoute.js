@@ -4,7 +4,7 @@ import express from "express"
 import { addToCart, removeFromCart, getCart } from "../controllers/cartController.js"
 
 // import middleware to connect cart routers (end points)
-import authMiddleware from "../tempMiddleware/auth.js"; // then this middleware can be add on the 3 cart routers
+import authMiddleware from "../middleware/auth.js"; // then this middleware can be add on the 3 cart routers
 
 // after above import we will create one express router
 const cartRouter = express.Router(); // using this router to create multiple end points

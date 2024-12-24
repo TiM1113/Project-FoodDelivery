@@ -1,5 +1,5 @@
 import express from 'express'; // this express used for creating a router
-import authMiddleware from '../tempMiddleware/auth.js'
+import authMiddleware from '../middleware/auth.js'
 // import placeOrder from orderController.js
 import {
 	placeOrder,
