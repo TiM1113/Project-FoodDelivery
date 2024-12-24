@@ -40,7 +40,9 @@ const FoodItem = ({id, name, price, description, image}) => {
 			</div>
 			<div className="food-item-info">
 				<div className="food-item-name-rating">
-					<p>{name}</p>
+
+          {/* Add title for tooltip and truncate name */}
+					<p title={name}>{name}</p>
 					<img
 						src={assets.rating_starts}
 						alt=""

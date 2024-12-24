@@ -23,10 +23,41 @@
   margin-bottom: 10px;
 }
 
-.food-item-name-rating p{
+/* .food-item-name-rating p{
   font-size: 20px;
   font-weight: 500;
+} */
+
+/* ====================================================================================== */
+/* Ensure food item names are unified in a single line */
+.food-item-name-rating p {
+  font-size: 20px;
+  font-weight: 500;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add "..." to truncated text */
+  max-width: 70%; /* Adjust as per the layout; ensures name and rating fit */
+  position: relative; /* Required for tooltip positioning */
 }
+
+/* Add tooltip for long names on hover */
+.food-item-name-rating p:hover::after {
+  content: attr(title); /* Use the title attribute for full text */
+  position: absolute;
+  left: 0;
+  top: 25px; /* Adjust the vertical position of the tooltip */
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap; /* Prevent wrapping in the tooltip */
+  font-size: 14px;
+  z-index: 10; /* Ensure the tooltip is on top */
+  transition: opacity 0s; /* No transition delay */
+  opacity: 1; /* Ensure visibility */
+}
+/* ====================================================================================== */
+
 
 .food-item-name-rating img{
   width: 70px;

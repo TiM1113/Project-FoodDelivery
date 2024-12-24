@@ -9,6 +9,11 @@ const List = ({url}) => {
   // const url = "http://localhost:4000"// this url const here should be removed
   // Create one state variable to store all the data form database.
   const [list, setList] = useState([]);
+
+
+
+
+
   // Create one fetch list function
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`);
@@ -33,9 +38,15 @@ const List = ({url}) => {
       toast.success(response.data.message) 
     }
     else {
-      toast.error("Error");
+      toast.error("Error deleting item");
     }
   }
+
+
+
+
+
+
 
   // useEffect function to test fetchList function
   useEffect(()=>{
