@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-  const url = "http://localhost:4000"; // this url variable will be passed in the context value
+  const url = "https://project-fooddelivery.onrender.com"; // this url variable will be passed in the context value
   const [food_list, setFoodList] = useState([]);// to create one state variable to save food like to database instead of loading assets from local assets folder.
   const [cartItems, setCartItems] = useState({}); // save the cart data fetched with 3- loadCartData function in this cartItems variable
   const [token, setToken] = useState(""); // to create one token state variable default it as empty ""
