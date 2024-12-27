@@ -16,7 +16,8 @@ console.log(process.env.REACT_APP_BACKEND_URL);
 const App = () => {
 
   // Only place const url in App.jsx file instead of placing this variable within different files
-  const url = process.env.REACT_APP_BACKEND_URL;
+  const url = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000";
+
   
 
 
