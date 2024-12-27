@@ -14,7 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
 
   // Only place const url in App.jsx file instead of placing this variable within different files
-  const url = "http://localhost:4000"
+  const url = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000";
+
 
   return (
     <div>
